@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Project Intake — cass.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── HEADER ─────────────────────────────────────────── -->
+  <header>
+    <span class="brand">cass.dev</span>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    <span class="step-label" id="step-label">0 / 15</span>
+  </header>
+
+  <!-- ── MAIN ───────────────────────────────────────────── -->
+  <main id="form-wrap">
+
+    <!-- WELCOME SCREEN -->
+    <div class="screen active" id="screen-welcome">
+      <div class="screen-inner">
+        <p class="eyebrow">New Project</p>
+        <h1>Let's build something good.</h1>
+        <p class="subtitle">
+          This takes about 5 minutes. Your answers help me understand
+          exactly what you need so we can hit the ground running.
+        </p>
+        <button class="btn-holo" onclick="startForm()">
+          <span>Let's go</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── QUESTIONS ─────────────────────────────────────── -->
+
+    <!-- Q1 -->
+    <div class="screen" id="q1">
+      <div class="screen-inner">
+        <p class="q-number">01 <span>/ 15</span></p>
+        <h2>First things first.</h2>
+        <p class="q-sub">What's your name and your business name?</p>
+        <div class="input-stack">
+          <input class="text-input" type="text" id="q1-name" placeholder="Your name" autocomplete="given-name" />
+          <input class="text-input" type="text" id="q1-biz" placeholder="Business name" autocomplete="organization" />
+        </div>
+        <div class="nav-row">
+          <button class="btn-ghost" onclick="prevScreen()">← Back</button>
+          <button class="btn-holo" onclick="nextScreen()"><span>Continue</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="screen" id="q2">
+      <div class="screen-inner">
+        <p class="q-number">02 <span>/ 15</span></p>
+        <h2>What kind of project is this?</h2>
+        <p class="q-sub">Pick one.</p>
+        <div class="pill-grid" data-type="single" data-name="project-type">
+          <button class="pill" data-value="New website from scratch">New website from scratch</button>
+          <button class="pill" data-value="Redesign of existing site">Redesign of existing site</button>
+          <button class="pill" data-value="Landing page only">Landing page only</button>
+          <button class="pill" data-value="Something else">Something else</button>
+        </div>
+        <div class="nav-row">
+          <button class="btn-ghost" onclick="prevScreen()">← Back</button>
+          <button class="btn-holo" onclick="nextScreen()"><span>Continue</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="screen" id="q3">
+      <div class="screen-inner">
+        <p class="q-number">03 <span>/ 15</span></p>
+        <h2>Platform preference?</h2>
+        <p class="q-sub">What you're built on affects how we build it.</p>
+        <div class="pill-grid" data-type="single" data-name="platform">
+          <button class="pill" data-value="Framer">Framer</button>
+          <button class="pill" data-value="Custom coded (HTML / CSS / JS)">Custom coded</button>
+          <button class="pill" data-value="WordPress">WordPress</button>
+          <button class="pill" data-value="No preference / not sure">No preference</button>
+        </div>
+        <div class="nav-row">
+          <button class="btn-ghost" onclick="prevScreen()">← Back</button>
+          <button class="btn-holo" onclick="nextScreen()"><span>Continue</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="screen" id="q4">
+      <div class="screen-inner">
+        <p class="q-number">04 <span>/ 15</span></p>
+        <h2>What's the main goal?</h2>
+        <p class="q-sub">What do you want visitors to do when they land?</p>
+        <div class="pill-grid" data-type="single" data-name="primary-goal">
+          <button class="pill" data-value="Get bookings or leads">Get bookings or leads</button>
+          <button class="pill" data-value="Sell products online">Sell products online</button>
+          <button class="pill" data-value="Build credibility and trust">Build credibility and trust</button>
+          <button class="pill" data-value="Showcase a portfolio or work">Showcase portfolio or work</button>
+          <button class="pill" data-value="All of the above">All of the above</button>
+        </div>
+        <div class="nav-row">
+          <button class="btn-ghost" onclick="prevScreen()">← Back</button>
+          <button class="btn-holo" onclick="nextScreen()"><span>Continue</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="screen" id="q5">
+      <div class="screen-inner">
+        <p class="q-number">05 <span>/ 15</span></p>
+        <h2>Who's your ideal client?</h2>
+        <p class="q-sub">Describe them like you're telling a friend. Age, interests, what they're struggling with.</p>
+        <textarea class="text-input textarea" id="q5-audience" placeholder="e.g. Women 30–50 dealing with chronic pain, local to Denver, who want a calming and trustworthy experience..." rows="4"></textarea>
+        <div class="nav-row">
+          <button class="btn-ghost" onclick="prevScreen()">← Back</button>
+          <button class="btn-holo" onclick="nextScreen()"><span>Continue</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="screen" id="q6">
+      <div class="screen-inner">
+        <p class="q-number">06 <span>/ 15</span></p>
+        <h2>Do you have brand assets?</h2>
+        <p class="q-sub">Select everything you already have.</p>
+        <div class="pill-grid" data-type="multi" data-name="brand-assets">
+          <button class="pill" data-value="Logo">Logo</button>
+          <button class="pill" data-value="Color palette">Color palette</button>
+          <button class="pill" data-value="Fonts">Fonts</button>
+          <button class="pill" data-value="Brand guidelines">Brand guidelines</button>
+          <button class="pill" data-value="None — starting fresh">None — starting fresh</button>
+        </div>
+        <div class="nav-row">
+          <button class="btn-ghost" onclick="prevScreen()">← Back</button>
+          <button class="btn-holo" onclick="nextScreen()"><span>Continue</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="screen" id="q7">
+      <div class="screen-inner">
+        <p class="q-number">07 <span>/ 15</span></p>
+        <h2>Websites you love.</h2>
+        <p class="q-sub">Share up to 3 URLs — or just describe what you like about them. Don't overthink it.</p>
+        <textarea class="text-input textarea" id="q7-inspo" placeholder="e.g. mindfulwomenspa.com — love the soft layout and how calm it feels. Or: I like anything that's earthy, slow, and luxurious." rows="4"></textarea>
+        <div class="nav-row">
+          <button class="btn-ghost" onclick="prevScreen()">← Back</button>
+          <button class="btn-holo" onclick="nextScreen()"><span>Continue</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="screen" id="q8">
+      <div class="screen-inner">
+        <p class="q-number">08 <span>/ 15</span></p>
+        <h2>Describe your brand in 3 words.</h2>
+        <p class="q-sub">No wrong answers. First instinct wins.</p>
+        <input class="text-input" type="text" id="q8-vibe" placeholder="e.g. earthy, elevated, calm" />
+        <div class="nav-row">
+          <button class="btn-ghost" onclick="prevScreen()">← Back</button>
+          <button class="btn-holo" onclick="nextScreen()"><span>Continue</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="screen" id="q9">
+      <div class="screen-inner">
+        <p class="q-number">09 <span>/ 15</span></p>
+        <h2>What pages do you need?</h2>
+        <p class="q-sub">Select all that apply. We can always add more later.</p>
+        <div class="pill-grid" data-type="multi" data-name="pages">
+          <button class="pill" data-value="Home">Home</button>
+          <button class="pill" data-value="About">About</button>
+          <button class="pill" data-value="Services">Services</button>
+          <button class="pill" data-value="Events">Events</button>
+          <button class="pill" data-value="Blog">Blog</button>
+          <button class="pill" data-value="Contact">Contact</button>
+          <button class="pill" data-value="Shop">Shop</button>
+          <button class="pill" data-value="Other">Other</button>
+        </div>
+        <div class="nav-row">
+          <button class="btn-ghost" onclick="prevScreen()">← Back</button>
+          <button class="btn-holo" onclick="nextScreen()"><span>Continue</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="screen" id="q10">
+      <div class="screen-inner">
+        <p class="q-number">10 <span>/ 15</span></p>
+        <h2>Is your copy ready?</h2>
+        <p class="q-sub">"Copy" = the words on your site. Bios, service descriptions, headlines, etc.</p>
+        <div class="pill-grid" data-type="single" data-name="copy-status">
+          <button class="pill" data-value="Yes — mostly written">Yes — mostly written</button>
+          <button class="pill" data-value="Some — I need help with parts">Some — need help with parts</button>
+          <button class="pill" data-value="No — I need help writing it all">No — need help writing it all</button>
+        </div>
+        <div class="nav-row">
+          <button class="btn-ghost" onclick="prevScreen()">← Back</button>
+          <button class="btn-holo" onclick="nextScreen()"><span>Continue</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q11 -->
+    <div class="screen" id="q11">
+      <div class="screen-inner">
+        <p class="q-number">11 <span>/ 15</span></p>
+        <h2>What about photos and video?</h2>
+        <div class="pill-grid" data-type="single" data-name="media-status">
+          <button class="pill" data-value="Yes — professional quality">Yes — professional quality</button>
+          <button class="pill" data-value="Yes — phone photos only">Yes — phone photos only</button>
+          <button class="pill" data-value="No — I need help sourcing or shooting">No — need help sourcing</button>
+        </div>
+        <div class="nav-row">
+          <button class="btn-ghost" onclick="prevScreen()">← Back</button>
+          <button class="btn-holo" onclick="nextScreen()"><span>Continue</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q12 -->
+    <div class="screen" id="q12">
+      <div class="screen-inner">
+        <p class="q-number">12 <span>/ 15</span></p>
+        <h2>Do you have a domain name?</h2>
+        <p class="q-sub">That's your URL — e.g. yourbusiness.com</p>
+        <div class="pill-grid" data-type="single" data-name="domain">
+          <button class="pill" data-value="Yes — I own one">Yes — I own one</button>
+          <button class="pill" data-value="No — not yet">No — not yet</button>
+          <button class="pill" data-value="Not sure what that is">Not sure what that is</button>
+        </div>
+        <div class="nav-row">
+          <button class="btn-ghost" onclick="prevScreen()">← Back</button>
+          <button class="btn-holo" onclick="nextScreen()"><span>Continue</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q13 -->
+    <div class="screen" id="q13">
+      <div class="screen-inner">
+        <p class="q-number">13 <span>/ 15</span></p>
+        <h2>Any integrations needed?</h2>
+        <p class="q-sub">Select everything that needs to connect to your site.</p>
+        <div class="pill-grid" data-type="multi" data-name="integrations">
+          <button class="pill" data-value="Online booking or scheduling">Online booking</button>
+          <button class="pill" data-value="Newsletter or email list">Newsletter / email list</button>
+          <button class="pill" data-value="E-commerce or online store">E-commerce</button>
+          <button class="pill" data-value="Contact form">Contact form</button>
+          <button class="pill" data-value="Social media feed">Social media feed</button>
+          <button class="pill" data-value="None">None</button>
+        </div>
+        <div class="nav-row">
+          <button class="btn-ghost" onclick="prevScreen()">← Back</button>
+          <button class="btn-holo" onclick="nextScreen()"><span>Continue</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q14 -->
+    <div class="screen" id="q14">
+      <div class="screen-inner">
+        <p class="q-number">14 <span>/ 15</span></p>
+        <h2>What's your budget range?</h2>
+        <p class="q-sub">Honest answers help me recommend the right scope. No judgment.</p>
+        <div class="pill-grid" data-type="single" data-name="budget">
+          <button class="pill" data-value="Under $300">Under $300</button>
+          <button class="pill" data-value="$300 – $600">$300 – $600</button>
+          <button class="pill" data-value="$600 – $1,200">$600 – $1,200</button>
+          <button class="pill" data-value="$1,200+">$1,200+</button>
+          <button class="pill" data-value="Trade or collaboration">Trade or collaboration</button>
+          <button class="pill" data-value="Let's talk — not sure yet">Let's talk — not sure</button>
+        </div>
+        <div class="nav-row">
+          <button class="btn-ghost" onclick="prevScreen()">← Back</button>
+          <button class="btn-holo" onclick="nextScreen()"><span>Continue</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q15 -->
+    <div class="screen" id="q15">
+      <div class="screen-inner">
+        <p class="q-number">15 <span>/ 15</span></p>
+        <h2>When do you need this live?</h2>
+        <div class="pill-grid" data-type="single" data-name="timeline">
+          <button class="pill" data-value="ASAP — within 2 to 3 weeks">ASAP — 2–3 weeks</button>
+          <button class="pill" data-value="About 1 month">About 1 month</button>
+          <button class="pill" data-value="2 to 3 months">2–3 months</button>
+          <button class="pill" data-value="Flexible — no hard deadline">Flexible</button>
+        </div>
+        <div class="nav-row">
+          <button class="btn-ghost" onclick="prevScreen()">← Back</button>
+          <button class="btn-holo" onclick="nextScreen()"><span>Continue</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q FINAL -->
+    <div class="screen" id="q-final">
+      <div class="screen-inner">
+        <p class="eyebrow">Almost there</p>
+        <h2>Anything else I should know?</h2>
+        <p class="q-sub">Special requirements, things that matter to you, or anything that didn't fit above. Optional.</p>
+        <textarea class="text-input textarea" id="q-extra" placeholder="Take your time..." rows="5"></textarea>
+        <div class="nav-row">
+          <button class="btn-ghost" onclick="prevScreen()">← Back</button>
+          <button class="btn-holo btn-submit" id="submit-btn" onclick="handleSubmit()">
+            <span>Send to Cass ✦</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- THANK YOU -->
+    <div class="screen" id="screen-thanks">
+      <div class="screen-inner centered">
+        <div class="thanks-mark">✦</div>
+        <h2>You're all set.</h2>
+        <p class="subtitle">I'll review everything and be in touch within 48 hours. Talk soon.</p>
+        <p class="thanks-sig">— Cass</p>
+      </div>
+    </div>
+
+    <!-- ERROR -->
+    <div class="screen" id="screen-error">
+      <div class="screen-inner centered">
+        <div class="thanks-mark error-mark">!</div>
+        <h2>Something went wrong.</h2>
+        <p class="subtitle">Your answers weren't sent. Please try again or reach out directly.</p>
+        <button class="btn-holo" onclick="showScreen('q-final')"><span>Try again</span></button>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

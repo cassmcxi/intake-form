@@ -1,0 +1,490 @@
+/* ── RESET & BASE ──────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:         #F5F0E8;
+  --surface:    #FAF7F2;
+  --text:       #1C1C1E;
+  --text-muted: #8A8480;
+  --red:        #D63027;
+  --red-soft:   rgba(214, 48, 39, 0.08);
+  --border:     rgba(0, 0, 0, 0.08);
+  --white:      #FFFFFF;
+
+  --font-head:  'Syne', sans-serif;
+  --font-body:  'Outfit', sans-serif;
+
+  --radius-pill: 999px;
+  --radius-input: 14px;
+  --radius-card:  24px;
+
+  --transition: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HEADER ────────────────────────────────────────────── */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 32px;
+  background: var(--bg);
+}
+
+.brand {
+  font-family: var(--font-head);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+.progress-track {
+  flex: 1;
+  height: 2px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--red);
+  border-radius: 999px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step-label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  min-width: 36px;
+  text-align: right;
+}
+
+/* ── FORM WRAP ─────────────────────────────────────────── */
+#form-wrap {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── SCREENS ───────────────────────────────────────────── */
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 24px 40px;
+  opacity: 0;
+  transform: translateX(60px);
+  pointer-events: none;
+  transition:
+    opacity var(--transition),
+    transform var(--transition);
+}
+
+.screen.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: all;
+}
+
+.screen.exit {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+
+.screen-inner {
+  width: 100%;
+  max-width: 560px;
+}
+
+.screen-inner.centered {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ── TYPOGRAPHY ────────────────────────────────────────── */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 12px;
+}
+
+h1 {
+  font-family: var(--font-head);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-family: var(--font-head);
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 420px;
+  margin-bottom: 36px;
+}
+
+.q-number {
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--red);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.q-number span {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.q-sub {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+/* ── INPUTS ────────────────────────────────────────────── */
+.input-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.text-input {
+  width: 100%;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-input);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  resize: none;
+  -webkit-appearance: none;
+}
+
+.text-input::placeholder {
+  color: var(--text-muted);
+}
+
+.text-input:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px var(--red-soft);
+}
+
+.textarea {
+  border-radius: var(--radius-input);
+  min-height: 120px;
+  margin-bottom: 32px;
+}
+
+/* ── PILL OPTIONS ──────────────────────────────────────── */
+.pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.pill {
+  position: relative;
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    hsla(330, 100%, 85%, 0) 0%,
+    hsla(200, 100%, 85%, 0) 25%,
+    hsla(140, 100%, 85%, 0) 50%,
+    hsla(60,  100%, 85%, 0) 75%,
+    hsla(280, 100%, 85%, 0) 100%
+  );
+  background-size: 300% 300%;
+  animation: holo 5s ease infinite;
+  border-radius: inherit;
+  transition: opacity 0.2s ease;
+}
+
+.pill:hover {
+  border-color: rgba(0,0,0,0.18);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.pill.selected {
+  border-color: var(--red);
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+.pill.selected::before {
+  background: linear-gradient(
+    135deg,
+    hsla(330, 100%, 85%, 0.3) 0%,
+    hsla(200, 100%, 85%, 0.3) 25%,
+    hsla(140, 100%, 85%, 0.3) 50%,
+    hsla(60,  100%, 85%, 0.3) 75%,
+    hsla(280, 100%, 85%, 0.3) 100%
+  );
+  background-size: 300% 300%;
+  animation: holo 5s ease infinite;
+}
+
+/* ── HOLOGRAPHIC BUTTON ────────────────────────────────── */
+.btn-holo {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 36px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.06),
+    0 4px 18px rgba(214, 48, 39, 0.22),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+/* The liquid rainbow layer */
+.btn-holo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    hsla(330, 100%, 80%, 0.25) 0%,
+    hsla(200, 100%, 80%, 0.25) 20%,
+    hsla(140, 100%, 80%, 0.25) 40%,
+    hsla(60,  100%, 80%, 0.25) 60%,
+    hsla(280, 100%, 80%, 0.25) 80%,
+    hsla(330, 100%, 80%, 0.25) 100%
+  );
+  background-size: 300% 300%;
+  animation: holo 5s ease infinite;
+  border-radius: inherit;
+}
+
+/* Shine highlight on top edge */
+.btn-holo::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.35),
+    rgba(255,255,255,0)
+  );
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.btn-holo span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-holo:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.08),
+    0 12px 48px rgba(214, 48, 39, 0.08),
+    inset 0 1px 0 rgba(255,255,255,0.7);
+  border-color: rgba(255,255,255,0.75);
+}
+
+.btn-holo:active {
+  transform: translateY(0);
+}
+
+/* Submit button is slightly stronger */
+.btn-submit {
+  padding: 17px 44px;
+  font-size: 16px;
+}
+
+/* ── GHOST BACK BUTTON ─────────────────────────────────── */
+.btn-ghost {
+  background: transparent;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 8px 4px;
+  transition: color 0.2s ease;
+}
+
+.btn-ghost:hover {
+  color: var(--text);
+}
+
+/* ── NAV ROW ───────────────────────────────────────────── */
+.nav-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+/* ── THANK YOU ─────────────────────────────────────────── */
+.thanks-mark {
+  font-family: var(--font-head);
+  font-size: 48px;
+  color: var(--red);
+  margin-bottom: 8px;
+}
+
+.error-mark {
+  color: var(--text-muted);
+}
+
+.thanks-sig {
+  font-family: var(--font-head);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* ── HOLOGRAPHIC KEYFRAME ──────────────────────────────── */
+@keyframes holo {
+  0%   { background-position: 0%   0%;   }
+  25%  { background-position: 100% 0%;   }
+  50%  { background-position: 100% 100%; }
+  75%  { background-position: 0%   100%; }
+  100% { background-position: 0%   0%;   }
+}
+
+/* ── MOBILE ────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  header {
+    padding: 16px 20px;
+  }
+
+  .screen {
+    padding: 90px 20px 32px;
+  }
+
+  .pill-grid {
+    gap: 8px;
+  }
+
+  .pill {
+    padding: 11px 18px;
+    font-size: 13px;
+  }
+
+  .nav-row {
+    flex-wrap: wrap;
+  }
+
+  .btn-holo {
+    padding: 14px 28px;
+  }
+}
+
+/* ── REDUCED MOTION ────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .btn-holo::before,
+  .pill::before,
+  .pill.selected::before {
+    animation: none;
+  }
+
+  .screen {
+    transition: opacity 0.15s ease;
+    transform: none !important;
+  }
+}
